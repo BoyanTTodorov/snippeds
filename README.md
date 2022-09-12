@@ -1,0 +1,2 @@
+# snippeds
+Useful code snippets
