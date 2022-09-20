@@ -1,42 +1,55 @@
+import sqlite3
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 
-# Pie chart, where the slices will be ordered and plotted counter-clockwise:
-# plt.suptitle("This Main Title is Nicely Formatted", fontsize=16)
-labels = 'Counted', 'Not Counted'
-sizes = [40.08, 100-40.08,]
-explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
+path = r"S:\Warehouse dept\Inventory control\Reporting and dashboards\Bin's Counting\Cycle Counting\DATABASE\cycle_couting.db"
 
-fig1, ax1 = plt.subplots()
-fig1.suptitle("MKI", fontsize=16)
-ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+all_warehouses = {'MKI':[222380], 'JTS1':[139082], 'JTS2':[163962]}
+all_warehouses_counted = {}
+
+def plotGraph(lbl_counted:str, lbl_notcounted:str, total_bins:int ,qty_counted:float, main_label:str):
+        fig = plt.figure()
+        ### Plotting arrangements ###
+        labels = lbl_counted, lbl_notcounted
+        sizes = [qty_counted, total_bins-qty_counted]
+        explode = (0, 0.1)  # Only "explode" the 2nd slice
+        fig, ax = plt.subplots()
+        fig.suptitle(main_label, fontsize=16)
+        ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
         shadow=True, startangle=90)
-ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
-plt.show()
-
-# Pie chart, where the slices will be ordered and plotted counter-clockwise:
-labels = 'Counted', 'Not Counted'
-sizes = [43.58, 100-43.58]
-explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
-
-fig2, ax2 = plt.subplots()
-fig2.suptitle("JTS1", fontsize=16)
-ax2.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-        shadow=True, startangle=90)
-ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
-plt.show()
+        ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        return fig
 
 
-# Pie chart, where the slices will be ordered and plotted counter-clockwise:
-labels = 'Counted', 'Not Counted'
-sizes = [48.34, 100 - 48.34]
-explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
+def get_data_from_database(warehouse):
+        counted  = []
 
-fig3, ax3 = plt.subplots()
-fig3.suptitle("JTS2", fontsize=16)
-ax3.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-        shadow=True, startangle=90)
-ax3.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        query = f'''SELECT COUNT(Result) FROM (SELECT "1","2","3","4","5","6","7","8","9","10",
+        "11","12","13","14","15","16","17","18","19","20","21","22",
+        "23","24","25","26","27","28","29","30","31","32","33","34",
+        "35","36","37","38","39","40","41","42","43","44","45","46",
+        "47","48","49","50","51","52",
+        "1"+"2"+"3"+"4"+"5"+"6"+"7"+"8"+"9"+"10"+"11"+"12"+"13"+"14"
+        +"15"+"16"+"17"+"18"+"19"+"20"+"21"+"22"+"23"+"24"+"25"+"26"+
+        "27"+"28"+"29"+"30"+"31"+"32"+"33"+"34"+"35"+"36"+"37"+"38"+"39"
+        +"40"+"41"+"42"+"43"+"44"+"45"+"46"+"47"+"48"+"49"+"50"+"51"+"52" 
+        AS Result from "{warehouse}") WHERE Result > 0;'''
+        
+        conn = sqlite3.connect(path)
+        curs = conn.execute(query)
+        counted = curs.fetchall()
+        number_counted = counted[0]
+        curs.close()
+        conn.close()
+        return number_counted
 
-plt.show()
+for wh in all_warehouses.keys():
+        all_warehouses[wh].append(get_data_from_database(wh))
+
+pp = PdfPages('Countings.pdf')
+for wh in all_warehouses.items():
+        warehouse = wh[0]
+        total = wh[1][0]
+        counted =wh[1][1]
+        pp.savefig(plotGraph('Counted\n' + str(counted[0]), 'Not Counted\n' + str(total - counted[0]), total, counted[0], warehouse))
+pp.close()
