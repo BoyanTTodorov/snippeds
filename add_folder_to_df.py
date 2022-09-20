@@ -22,6 +22,5 @@ df.to_sql('postings', conn, if_exists='append', index = False)
 conn.commit()
 conn.close()
 
-
 end = datetime.now() - start
 print(end)
