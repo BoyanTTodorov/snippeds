@@ -1,10 +1,17 @@
 /*'create table cur_date(id int primary key, dt datetime default current_timestamp);'*/
-/*SELECT "Storage Bin", COUNT ("Storage Bin") as count_bin
+
+/*
+SELECT "Storage Bin", COUNT ("Storage Bin") as count_bin
 FROM postings
 WHERE "Reason Description" = "Cycle Counting"
 GROUP BY "Storage Bin", "Reason Description"
 Order by count_bin DESC
 LIMIT 50;
+
+*/
+
+/*
+
 SELECT COUNT(Result) FROM (SELECT "1","2","3","4","5","6","7","8","9","10",
         "11","12","13","14","15","16","17","18","19","20","21","22",
         "23","24","25","26","27","28","29","30","31","32","33","34",
@@ -15,10 +22,13 @@ SELECT COUNT(Result) FROM (SELECT "1","2","3","4","5","6","7","8","9","10",
         "27"+"28"+"29"+"30"+"31"+"32"+"33"+"34"+"35"+"36"+"37"+"38"+"39"
         +"40"+"41"+"42"+"43"+"44"+"45"+"46"+"47"+"48"+"49"+"50"+"51"+"52" 
         AS Result FROM MKI) WHERE Result > 0;
+*/		
 
+/*
+SELECT (SELECT COUNT(*) FROM countings) - (SELECT COUNT(*) FROM countings WHERE Counted > 0) AS Differance;
+*/
 
-
-
+/*
 SELECT "Physical Inventory Document", 
 COUNT(*) as counted
 FROM postings
@@ -26,10 +36,9 @@ WHERE "Reason Description" = "Cycle Counting"
 GROUP BY "Physical Inventory Document"
 ORDER BY counted DESC
 LIMIT (10)
-
 */
 
-
+/*
 UPDATE MKI SET 
 "1" = 0,
 "2" = 0,
@@ -83,7 +92,11 @@ UPDATE MKI SET
 "50" = 0,
 "51" = 0,
 "52" = 0;
+*/
+
 --JTS1
+
+/*
 UPDATE JTS1 SET 
 "1" = 0,
 "2" = 0,
@@ -137,9 +150,11 @@ UPDATE JTS1 SET
 "50" = 0,
 "51" = 0,
 "52" = 0;
+*/
 
 --JTS2
 
+/*
 UPDATE JTS2 SET 
 "1" = 0,
 "2" = 0,
@@ -193,3 +208,5 @@ UPDATE JTS2 SET
 "50" = 0,
 "51" = 0,
 "52" = 0;
+*/
+
