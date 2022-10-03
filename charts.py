@@ -6,7 +6,7 @@ from datetime import datetime
 
 path = r"S:\Warehouse dept\Inventory control\Reporting and dashboards\Bin's Counting\Cycle Counting\DATABASE\cycle_couting.db"
 
-all_warehouses = {'MKI':[222380], 'JTS1':[139082], 'JTS2':[163962]}
+all_warehouses = {'MKI':[222380], 'JTS1':[139082], 'JTS2':[206938]}
 all_warehouses_counted = {}
 
 def plotGraph(lbl_counted:str, lbl_notcounted:str, total_bins:int ,qty_counted:float, main_label:str):
