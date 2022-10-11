@@ -13,7 +13,7 @@ path_to_database = r"C:\Users\b.todorov\Desktop\cycle_couting.db"
 conn = sqlite3.connect(path_to_database)
 cur = conn.cursor()
 for bin in df:
-    cur.execute(f'UPDATE MKI SET "36" = 1 WHERE "Storage Bin" = "{bin}"')
+    cur.execute(f'UPDATE MKI SET "" = 1 WHERE "Storage Bin" = "{bin}"')
     print(f'Updating Bin {bin}')
 conn.commit()
 cur.close()
