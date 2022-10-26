@@ -2,7 +2,7 @@ import pandas as pd
 import sqlite3
 
 
-path = r"C:\Users\b.todorov\Desktop\WOREHOUSE DATA\B06.xlsx"
+path = r"C:\Users\b.todorov\Desktop\A330_ B04.XLSX"
 
 df = pd.read_excel(path)
 
