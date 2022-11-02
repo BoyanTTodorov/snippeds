@@ -210,3 +210,12 @@ UPDATE JTS2 SET
 "52" = 0;
 */
 
+-- query = f'''
+-- INSERT INTO postings
+-- ("Higher-Level Handling Unit", "Physical Inventory Document", "Item","Document Year",\
+-- "Physical Inventory Procedure","Physical Inventory Status", "Activity Area","Reason","Reason Description","Priority",\
+-- "Priority Description",	"Created On","Created At","Count Date","Count Time","Counter","Posting Date","Changed By","Time of Posting",	\
+-- "Inventory Blocking Ind.","Storage Bin Empty","Storage Type","Storage Section","Storage Bin","Product","Product Short Description",	\
+-- "Batch","Stock Type","Warehouse Order","Warehouse Task","Book Quantity","Counted Quantity","Difference Quantity","Absolute Difference", \
+-- "Quantity","Base Unit of Measure","Difference Value","Absolute Difference Value","Currency","Difference Qty to Target Qty in Percent.")\
+--  VALUES({})'''
