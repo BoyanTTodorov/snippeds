@@ -129,4 +129,6 @@ dmypy.json
 .pyre/
 .pdf
 *.pdf
-DUBAI_12-10-22.png
+.png
+.xlsx
+.XLSX

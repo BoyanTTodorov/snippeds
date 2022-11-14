@@ -5,7 +5,7 @@ from datetime import datetime
 
 start = datetime.now()
 df = pd.DataFrame()
-path_folder = r"C:\Users\b.todorov\Desktop\POST_EXCEL\\"
+path_folder = r"C:\Users\b.todorov\Desktop\MKI\\"
 #path_database = r"C:\Users\b.todorov\Desktop\stock_control.db"
 
 # for file in os.listdir(path):
@@ -16,5 +16,7 @@ filenames = [file for file in os.listdir(path_folder) if file.endswith('.xlsx') 
 
 df = pd.concat([pd.read_excel(path_folder + file) for file in filenames], ignore_index=True)
 df = df.drop_duplicates()
-new_df = df['Storage Bin'].to_pickle('BINS.pk1')
+len(df)
+df.to_excel('mki.xlsx')
 
+print('done')
